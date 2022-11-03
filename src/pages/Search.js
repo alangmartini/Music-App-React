@@ -4,7 +4,6 @@ import Header from '../components/Header';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
 import Album from '../components/Album';
 import Loading from './Loading/Loading';
-import getMusics from '../services/musicsAPI';
 
 class Search extends Component {
   state = {
