@@ -26,6 +26,12 @@ class App extends Component {
     return value;
   };
 
+  resetInput = (inputName) => {
+    this.setState({
+      [inputName]: '',
+    });
+  };
+
   render() {
     const { loginNameInput, searchArtistInput } = this.state;
     return (
@@ -45,6 +51,7 @@ class App extends Component {
               dataTestId="page-search"
               searchArtistInput={ searchArtistInput }
               handleInput={ this.handleInput }
+              resetInput={ this.resetInput }
             />) }
           />
           <Route
