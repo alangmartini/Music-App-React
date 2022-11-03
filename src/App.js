@@ -9,25 +9,51 @@ import ProfileEdit from './pages/ProfileEdit';
 import NotFound from './pages/NotFound';
 
 class App extends Component {
-  // constructor(props) {
-  //   super(props);
-  //  this.state = {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loginNameInput: '',
+    };
+  }
 
-  //  };
-  //  }
+  handleInput = (event) => {
+    const { target } = event;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    this.setState({
+      [target.name]: value,
+    });
+    return value;
+  };
 
   render() {
+    const { loginNameInput } = this.state;
     return (
       <div>
         <BrowserRouter>
-          <Route path="/" render={ () => <Login dataTestId="page-login" /> } />
-          <Route path="/search" render={ () => <Search dataTestId="page-search" /> } />
-          <Route path="/album/:id" render={ () => <Album dataTestId="page-album" /> } />
+          <Route
+            path="/"
+            render={ () => (<Login
+              dataTestId="page-login"
+              handleInput={ this.handleInput }
+              loginNameInput={ loginNameInput }
+            />) }
+          />
+          <Route
+            path="/search"
+            render={ () => <Search dataTestId="page-search" /> }
+          />
+          <Route
+            path="/album/:id"
+            render={ () => <Album dataTestId="page-album" /> }
+          />
           <Route
             path="/favorites"
             render={ () => <Favorites dataTestId="page-favorites" /> }
           />
-          <Route path="/profile" render={ () => <Profile dataTestId="page-profile" /> } />
+          <Route
+            path="/profile"
+            render={ () => <Profile dataTestId="page-profile" /> }
+          />
           <Route
             path="/profile/edit"
             render={ () => <ProfileEdit dataTestId="page-profile-edit" /> }
