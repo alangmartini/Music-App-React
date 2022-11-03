@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import MusicCard from '../components/MusicCard';
 import getMusics from '../services/musicsAPI';
 import Loading from './Loading/Loading';
-import { addSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
+import { addSong, removeSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 class Album extends Component {
   constructor(props) {
@@ -63,10 +63,20 @@ class Album extends Component {
     const selectedMusicIndex = albumMusics
       .findIndex(({ trackId }) => trackId === music.trackId);
 
-    albumMusics[selectedMusicIndex].checked = true;
-
+    const isChecked = albumMusics[selectedMusicIndex].checked;
+    if (!isChecked) {
+      albumMusics[selectedMusicIndex].checked = true;
+      this.setState({ isLoading: true });
+      await addSong(music);
+      this.setState({
+        isLoading: false,
+        albumMusics,
+      });
+      return;
+    }
+    albumMusics[selectedMusicIndex].checked = false;
     this.setState({ isLoading: true });
-    await addSong(music);
+    await removeSong(music);
     this.setState({
       isLoading: false,
       albumMusics,
