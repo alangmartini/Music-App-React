@@ -13,6 +13,7 @@ class App extends Component {
     super(props);
     this.state = {
       loginNameInput: '',
+      searchArtistInput: '',
     };
   }
 
@@ -26,7 +27,7 @@ class App extends Component {
   };
 
   render() {
-    const { loginNameInput } = this.state;
+    const { loginNameInput, searchArtistInput } = this.state;
     return (
       <div>
         <BrowserRouter>
@@ -40,7 +41,11 @@ class App extends Component {
           />
           <Route
             path="/search"
-            render={ () => <Search dataTestId="page-search" /> }
+            render={ () => (<Search
+              dataTestId="page-search"
+              searchArtistInput={ searchArtistInput }
+              handleInput={ this.handleInput }
+            />) }
           />
           <Route
             path="/album/:id"
