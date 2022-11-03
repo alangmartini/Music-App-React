@@ -63,20 +63,14 @@ class Album extends Component {
     const selectedMusicIndex = albumMusics
       .findIndex(({ trackId }) => trackId === music.trackId);
 
-    const isChecked = albumMusics[selectedMusicIndex].checked;
-    if (!isChecked) {
-      albumMusics[selectedMusicIndex].checked = true;
-      this.setState({ isLoading: true });
-      await addSong(music);
-      this.setState({
-        isLoading: false,
-        albumMusics,
-      });
-      return;
-    }
-    albumMusics[selectedMusicIndex].checked = false;
+    const clickedMusic = albumMusics[selectedMusicIndex];
+
+    clickedMusic.checked = !clickedMusic.checked;
+
     this.setState({ isLoading: true });
-    await removeSong(music);
+    const addOrRemove = clickedMusic.checked ? addSong : removeSong;
+    await addOrRemove(music);
+
     this.setState({
       isLoading: false,
       albumMusics,
