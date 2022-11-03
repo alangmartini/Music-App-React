@@ -51,10 +51,12 @@ class App extends Component {
             render={ () => <Favorites dataTestId="page-favorites" /> }
           />
           <Route
+            exact
             path="/profile"
             render={ () => <Profile dataTestId="page-profile" /> }
           />
           <Route
+            exact
             path="/profile/edit"
             render={ () => <ProfileEdit dataTestId="page-profile-edit" /> }
           />

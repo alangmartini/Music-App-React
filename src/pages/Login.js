@@ -22,7 +22,6 @@ class Login extends Component {
         isLoading: false,
         redirect: true,
       });
-      return <Redirect to="/search" />;
     };
 
     return (
