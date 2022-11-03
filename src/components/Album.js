@@ -26,7 +26,9 @@ class Album extends Component {
         <Link
           to={ `/album/${collectionId}` }
           data-testid={ `link-to-album-${collectionId}` }
-        />
+        >
+          Link
+        </Link>
       </div>
     );
   }
