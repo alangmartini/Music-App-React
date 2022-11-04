@@ -6,7 +6,7 @@ class NotFound extends Component {
     // const { dataTestId } = this.props;
 
     return (
-      <div data-testid="teste">content</div>
+      <div data-testid="page-not-found">content</div>
     );
   }
 }
