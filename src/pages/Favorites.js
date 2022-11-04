@@ -18,12 +18,6 @@ class Favorites extends Component {
     this.fetchFavoriteSongs();
   }
 
-  addCheckedToFavoritesCuzTestsArePoorlyMade = () => {
-    const { favoriteSongs } = this.state;
-
-    this.setState({ favoriteSongs });
-  };
-
   fetchFavoriteSongs = async () => {
     this.setState({ isLoading: true });
 
