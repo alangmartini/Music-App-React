@@ -58,16 +58,15 @@ class Album extends Component {
   };
 
   handleFavorite = async (music) => {
+    this.setState({ isLoading: true });
+
     const { albumMusics } = this.state;
 
     const selectedMusicIndex = albumMusics
       .findIndex(({ trackId }) => trackId === music.trackId);
 
     const clickedMusic = albumMusics[selectedMusicIndex];
-
     clickedMusic.checked = !clickedMusic.checked;
-
-    this.setState({ isLoading: true });
     const addOrRemove = clickedMusic.checked ? addSong : removeSong;
     await addOrRemove(music);
 
